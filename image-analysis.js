@@ -189,4 +189,4 @@ app.put("/process-image", async (req, res) => {
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Start Server
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+app.listen(3000, () => console.log("Server running on http://204.48.17.243:3000"));
