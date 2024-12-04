@@ -4,7 +4,7 @@
   "description": "Final project for system integration course, wrapping Azure Vision API functionalities.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node image-analysis.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,7 +16,6 @@
     "express": "^4.21.1",
     "joi": "^17.13.3",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1",
-    "system-integration-final-project": "file:"
+    "swagger-ui-express": "^5.0.1"
   }
 }
