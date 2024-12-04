@@ -1,0 +1,26 @@
+# Ignore environment file
+.env
+
+# Ignore node_modules
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore build output
+dist/
+build/
+
+# Ignore coverage reports
+coverage/
+
+# Ignore any other sensitive or unnecessary files
+# Ignore keys and certificates
+*.pem
+*.key
+*.crt
+
+# Ignore temporary files
+*.tmp
+*.bak
+
