@@ -76,7 +76,7 @@ https://i.imgur.com/uUkc26y.jpeg
 **Response Example**:  
 ```
 {
-  "message": "Welcome to the Image Analysis API!"
+  "message": ""
 }
 ```
 
@@ -109,7 +109,7 @@ https://i.imgur.com/uUkc26y.jpeg
 ### 3. POST /detect-objects
 **Description**: Detects objects in an image and returns their details.
 
--**URL**: /detect-objects
+-**URL**: http://your-server-ip:3000/detect-objects
 
 -**Method**: POST
 
@@ -130,10 +130,11 @@ https://i.imgur.com/uUkc26y.jpeg
   ]
 }
 ```
+
 ### 4. GET /image-info
 **Description**: Fetches image information (tags) using query parameters.
 
--**URL**: /image-info
+-**URL**: http://your-server-ip:3000/image-info
 
 -**Method**: GET
 
@@ -156,10 +157,11 @@ imageUrl (string, required): URL of the image to be analyzed.
   ]
 }
 ```
+
 ### 5. PUT /process-image
 **Description**: Unified endpoint for tagging or describing images based on query parameters.
 
-**URL**: /process-image
+**URL**: http://your-server-ip:3000/process-image
 
 **Method**: PUT
 
@@ -201,10 +203,399 @@ operation (string, optional): Type of analysis (tag or describe). Defaults to ta
   ]
 }
 ```
+
+# Test URL Request and Response in Postman 
+
+### 1. **GET /** 
+
+**URL** - http://204.48.17.243:3000 (GET)
+
+**Response**:  
+```
+{
+  "message": "Welcome to the Image Analysis API!"
+}
+```
+### 2. POST /describe-image /
+
+**URL** - http://204.48.17.243:3000/describe-image (POST)
+
+**Request**
+
+{
+  "imageUrl": "https://i.imgur.com/7tDrvDG.jpeg"
+}
+
+**Response**
+```
+{
+    "description": {
+        "tags": [
+            "tree",
+            "palm",
+            "outdoor",
+            "sky",
+            "light",
+            "sunset",
+            "plant",
+            "lined"
+        ],
+        "captions": [
+            {
+                "text": "a street with palm trees and buildings",
+                "confidence": 0.5085804462432861
+            }
+        ]
+    },
+    "requestId": "b2c5fb7d-0c9a-4ef1-8399-ecb6f4d76e1f",
+    "metadata": {
+        "height": 3328,
+        "width": 4864,
+        "format": "Jpeg"
+    },
+    "modelVersion": "2021-05-01"
+}
+```
+### 3. POST /detect-objects
+
+**URL** - http://204.48.17.243:3000/detect-objects (POST)
+
+**Request**
+
+{
+  "imageUrl": "https://i.imgur.com/7tDrvDG.jpeg"
+}
+
+**Response**
+```
+{
+    "objects": [
+        {
+            "rectangle": {
+                "x": 267,
+                "y": 0,
+                "w": 749,
+                "h": 2841
+            },
+            "object": "palm tree",
+            "confidence": 0.515,
+            "parent": {
+                "object": "tree",
+                "confidence": 0.541,
+                "parent": {
+                    "object": "plant",
+                    "confidence": 0.542
+                }
+            }
+        },
+        {
+            "rectangle": {
+                "x": 0,
+                "y": 1433,
+                "w": 476,
+                "h": 1567
+            },
+            "object": "palm tree",
+            "confidence": 0.625,
+            "parent": {
+                "object": "tree",
+                "confidence": 0.63,
+                "parent": {
+                    "object": "plant",
+                    "confidence": 0.632
+                }
+            }
+        },
+        {
+            "rectangle": {
+                "x": 997,
+                "y": 1662,
+                "w": 588,
+                "h": 1330
+            },
+            "object": "palm tree",
+            "confidence": 0.529,
+            "parent": {
+                "object": "tree",
+                "confidence": 0.533,
+                "parent": {
+                    "object": "plant",
+                    "confidence": 0.534
+                }
+            }
+        }
+    ],
+    "requestId": "f9e8a070-8e61-4b25-b6d8-889ab2913816",
+    "metadata": {
+        "height": 3328,
+        "width": 4864,
+        "format": "Jpeg"
+    },
+    "modelVersion": "2021-04-01"
+}
+```
+
+### 4. GET /image-info
+
+**URL** - http://204.48.17.243:3000/image-info?imageUrl=https%3A%2F%2Fi.imgur.com%2F7tDrvDG.jpeg (GET)
+
+**Response** - 
+```
+{
+    "tags": [
+        {
+            "name": "outdoor",
+            "confidence": 0.9986806511878967
+        },
+        {
+            "name": "sky",
+            "confidence": 0.9843864440917969
+        },
+        {
+            "name": "palm tree",
+            "confidence": 0.9722390174865723
+        },
+        {
+            "name": "cloud",
+            "confidence": 0.9592316150665283
+        },
+        {
+            "name": "car",
+            "confidence": 0.9511812925338745
+        },
+        {
+            "name": "street",
+            "confidence": 0.9480193257331848
+        },
+        {
+            "name": "road",
+            "confidence": 0.9386511445045471
+        },
+        {
+            "name": "arecales",
+            "confidence": 0.9338918924331665
+        },
+        {
+            "name": "sunset",
+            "confidence": 0.9197931289672852
+        },
+        {
+            "name": "vehicle",
+            "confidence": 0.8952008485794067
+        },
+        {
+            "name": "land vehicle",
+            "confidence": 0.8819502592086792
+        },
+        {
+            "name": "date palm",
+            "confidence": 0.8769435882568359
+        },
+        {
+            "name": "street light",
+            "confidence": 0.874387264251709
+        },
+        {
+            "name": "building",
+            "confidence": 0.8660222291946411
+        },
+        {
+            "name": "attalea speciosa",
+            "confidence": 0.8529790043830872
+        },
+        {
+            "name": "city",
+            "confidence": 0.8024938702583313
+        },
+        {
+            "name": "palm",
+            "confidence": 0.8006398677825928
+        },
+        {
+            "name": "tree",
+            "confidence": 0.7937787175178528
+        },
+        {
+            "name": "sunrise",
+            "confidence": 0.7754545211791992
+        },
+        {
+            "name": "plant",
+            "confidence": 0.7179710865020752
+        },
+        {
+            "name": "sun",
+            "confidence": 0.5257657170295715
+        },
+        {
+            "name": "landscape",
+            "confidence": 0.4525394141674042
+        }
+    ],
+    "requestId": "4514192c-5e9d-4041-a5d4-f61e2aa479ef",
+    "metadata": {
+        "height": 3328,
+        "width": 4864,
+        "format": "Jpeg"
+    },
+    "modelVersion": "2021-04-01"
+}
+```
+### 5. PUT /process-image
+
+**URL** - http://204.48.17.243:3000/process-image?operation=describe
+
+**Request**
+
+{
+  "imageUrl": "https://i.imgur.com/7tDrvDG.jpeg"
+}
+
+**Response**
+```
+{
+    "description": {
+        "tags": [
+            "tree",
+            "palm",
+            "outdoor",
+            "sky",
+            "light",
+            "sunset",
+            "plant",
+            "lined"
+        ],
+        "captions": [
+            {
+                "text": "a street with palm trees and buildings",
+                "confidence": 0.5085801482200623
+            }
+        ]
+    },
+    "requestId": "410b4d14-4521-44a1-86b7-e0e5000d82d8",
+    "metadata": {
+        "height": 3328,
+        "width": 4864,
+        "format": "Jpeg"
+    },
+    "modelVersion": "2021-05-01"
+}
+```
+**URL** - http://204.48.17.243:3000/process-image?operation=tag
+
+**Request**
+
+{
+  "imageUrl": "https://i.imgur.com/7tDrvDG.jpeg"
+}
+
+**Response**
+```
+{
+    "tags": [
+        {
+            "name": "outdoor",
+            "confidence": 0.9986806511878967
+        },
+        {
+            "name": "sky",
+            "confidence": 0.9843864440917969
+        },
+        {
+            "name": "palm tree",
+            "confidence": 0.9722390174865723
+        },
+        {
+            "name": "cloud",
+            "confidence": 0.9592316150665283
+        },
+        {
+            "name": "car",
+            "confidence": 0.9511812925338745
+        },
+        {
+            "name": "street",
+            "confidence": 0.9480193257331848
+        },
+        {
+            "name": "road",
+            "confidence": 0.9386511445045471
+        },
+        {
+            "name": "arecales",
+            "confidence": 0.9338918924331665
+        },
+        {
+            "name": "sunset",
+            "confidence": 0.9197931289672852
+        },
+        {
+            "name": "vehicle",
+            "confidence": 0.8952008485794067
+        },
+        {
+            "name": "land vehicle",
+            "confidence": 0.8819502592086792
+        },
+        {
+            "name": "date palm",
+            "confidence": 0.8769435882568359
+        },
+        {
+            "name": "street light",
+            "confidence": 0.874387264251709
+        },
+        {
+            "name": "building",
+            "confidence": 0.8660222291946411
+        },
+        {
+            "name": "attalea speciosa",
+            "confidence": 0.8529790043830872
+        },
+        {
+            "name": "city",
+            "confidence": 0.8024938702583313
+        },
+        {
+            "name": "palm",
+            "confidence": 0.8006398677825928
+        },
+        {
+            "name": "tree",
+            "confidence": 0.7937787175178528
+        },
+        {
+            "name": "sunrise",
+            "confidence": 0.7754545211791992
+        },
+        {
+            "name": "plant",
+            "confidence": 0.7179710865020752
+        },
+        {
+            "name": "sun",
+            "confidence": 0.5257657170295715
+        },
+        {
+            "name": "landscape",
+            "confidence": 0.4525394141674042
+        }
+    ],
+    "requestId": "ef45b735-3fdc-4e85-839c-d4a68417f55a",
+    "metadata": {
+        "height": 3328,
+        "width": 4864,
+        "format": "Jpeg"
+    },
+    "modelVersion": "2021-04-01"
+}
+```
+
 # Swagger Documentation
 You can view the API documentation and try out the endpoints using Swagger at:
 ```
-http://your-server-ip:3000/api-docs
+http://204.48.17.243:3000/api-docs
 ```
 # Error Handling
 If the request body or query parameters are missing or invalid, the API will return a 400 Bad Request response with an error message.
